@@ -33,6 +33,15 @@ const Weather = () => {
         fetchWeatherData(search);
     };
 
+    const getCurrentDate = () => {
+        return new Date().toLocaleDateString('en-us', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        })
+    };
+
     useEffect(() => {
         fetchWeatherData('Accra')
     }, [])
@@ -44,14 +53,53 @@ const Weather = () => {
             <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
             {
                 loading ?
-                    <h3>Loading data. Please wait...</h3>
+                    <h3 className="loading">Loading...</h3>
                     : <div>
                         <div className="city-name">
-                            <h3>{weatherData?.name}, <span>{weatherData?.sys.country}</span></h3>
+                            <h2>{weatherData?.name}, <span>{weatherData?.sys?.country}</span></h2>
+
+                            <div className="coordinate-info">
+                                <div className="columns">
+                                    <div>
+                                        <p>{weatherData?.coord?.lon}</p>
+                                        <p>Longitude</p>
+                                    </div>
+                                </div>
+
+                                <div className="columns">
+                                    <div>
+                                        <p>{weatherData?.coord?.lat}</p>
+                                        <p>Latitude</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="date">
+                            <span>{getCurrentDate()}</span>
+                        </div>
+
+                        <div className="temp">{weatherData?.main?.temp}&#176;C</div>
+                        <p className="description">
+                            {weatherData && weatherData.weather && weatherData.weather[0] ? weatherData.weather[0].description : ''}
+                        </p>
+                        <div className="weather-info">
+                            <div className="columns">
+                                <div>
+                                    <p className="wind">{weatherData?.wind?.speed}</p>
+                                    <p>Wind Speed</p>
+                                </div>
+                            </div>
+
+                            <div className="columns">
+                                <div>
+                                    <p className="humidity">{weatherData?.main?.humidity}%</p>
+                                    <p>Humidity</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
             }
-            Weather
         </div>
     )
 };
