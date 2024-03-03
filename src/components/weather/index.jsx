@@ -50,6 +50,9 @@ const Weather = () => {
         <div className="weather-container">
             <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
             {
+                error ? <h3>{error}. There was an error</h3> : null
+            }
+            {
                 loading ?
                     <h3 className="loading">Loading...</h3>
                     : <div>
