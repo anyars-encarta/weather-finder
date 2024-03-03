@@ -46,8 +46,6 @@ const Weather = () => {
         fetchWeatherData('Accra')
     }, [])
 
-    console.log(weatherData)
-
     return (
         <div className="weather-container">
             <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
@@ -80,6 +78,7 @@ const Weather = () => {
                         </div>
 
                         <div className="temp">{weatherData?.main?.temp}&#176;C</div>
+                        <p><b>Pressure:</b> {weatherData?.main?.pressure}</p>
                         <p className="description">
                             {weatherData && weatherData.weather && weatherData.weather[0] ? weatherData.weather[0].description : ''}
                         </p>
