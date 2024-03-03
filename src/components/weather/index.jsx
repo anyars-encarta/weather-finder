@@ -58,6 +58,7 @@ const Weather = () => {
                     : <div>
                         <div className="city-name">
                             <h2>{weatherData?.name}, <span>{weatherData?.sys?.country}</span></h2>
+                            <hr></hr>
 
                             <div className="coordinate-info">
                                 <div className="columns">

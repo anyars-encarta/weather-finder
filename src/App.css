@@ -50,6 +50,11 @@ body {
   margin-bottom: 10px;
 }
 
+.city-name hr {
+  border: 1px solid rgb(9, 129, 226);
+  width: 40%;
+}
+
 .coordinate-info {
   display: flex;
   justify-content: space-evenly;
